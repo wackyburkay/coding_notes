@@ -69,9 +69,9 @@ for i in range(N):
   
 #Burada kod N tane gelen "komut" ları, komut ve argümanları olacak şekilde bir arraye atar. Ama
 #neden array de dict değil? Dict olsaydı, aynı komuttan 2 tane (farklı değerlerle de olsa) tutamazdık.
-#İlk başta o salak hatayı yaptım, sonra düzelttim.
+#İlk başta o salak hatayı yaptım, sonra düzelttim. Listler mutable, tuple'lar immutabledır.
 
-#TUPLE #LIST #HASH #STRING #UPPERCASE #LOWERCASE
+#TUPLE #LIST #HASH #STRING #UPPERCASE #LOWERCASE #JOIN #SPLIT ----------
 
 myTuple = tuple(some_list)
 
@@ -92,5 +92,40 @@ string.lower()
 #isupper, islower: stringing bütün elemanları upper ya da lowercase mi diye bakar. Aynı şekilde upper ve
 #lower fonksiyonları da stringin tüm elemanlarını upper ya da lower yaparlar.
 
+otherString = someString.split(" ")
+oneOtherString = "-".join(otherString)
 
+#Bu iki line, verilen someString'i boşluklardan ayrılacak şekilde kelimelere bölüyor, ve sonra bu ayrılmış
+#parçaları aralarda tire (-) olacak şekilde tekrar bir araya getiriyor. Cool feature bruv.
+
+#STRING #SEARCH #OVERLAPPING #COUNT ----------
+
+#count() fonksiyonu stringlerde kullanıldığı zaman non-overlapping occurrence'ları döner. Mesela
+#aşağıdaki kod 1 dönecektir (verilen ABCDCDC ve substring CDC için):
+
+mainString.count(subString)
+
+#eğer overlapping occurrence'lar lazım ise, çok compact ve anlaşılır bir kod var, buraya eklemek isterim:
+
+def count_substring(string, sub_string):
+  sub_length = len(sub_string)
+  count = 0
+  for i in range(len(string)):
+    if string[i:i+sub_length] == sub_string:
+      count += 1
+  return count
+
+#LIST ----------
+
+results = list(5*("False",))
+
+#Bu kod parçacığı içinde 5 tane 'False' şeklinde string olan bir array oluşturur. Eğer ki:
+
+results = [5*"False"]
+
+#dersen, o zaman oluşan şey
+
+['FalseFalseFalse']
+
+#olacaktır. İstenen buysa güzel ama genelde istenen bu değildir.
 
